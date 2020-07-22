@@ -5,12 +5,18 @@ from selenium.webdriver.common.action_chains import ActionChains
 import unittest
 
 class Ppkt(unittest.TestCase):
+
+
+    @classmethod
+    def setUpClass(cls):
+        cls.driver = webdriver.Chrome(r'C:\chromedriver.exe')
+
     def setUp(self):
-        self.driver = webdriver.Chrome(r'C:\chromedriver.exe')
         self.driver.get('https://www.vkostume.ru/')
 
-    def tearDown(self):
-        self.driver.close()
+    @classmethod
+    def tearDownClass(cls):
+        cls.driver.close()
 
 
     def clikByXpath(self, xpath):
@@ -29,7 +35,8 @@ class Ppkt(unittest.TestCase):
         """
 
         self.clikByXpath('/html/body/div[5]/div[1]/div/div[1]/a')
-        assert self.driver.current_url == r'https://www.vkostume.ru/catalog/kostyumy_dlya_zhenchin/'
+
+        self.assertEqual(self.driver.current_url, r'https://www.vkostume.ru/catalog/kostyumy_dlya_zhenchin/')
     
     def test_1_2(self):
         """
@@ -39,7 +46,9 @@ class Ppkt(unittest.TestCase):
 
         self.hoverOverAnElementByXpath('/html/body/div[5]/div[1]/div/div[1]/a')
         self.clikByXpath('/html/body/div[5]/div[1]/div/div[1]/div/div/div/div/div/ul/li[1]/a')
-        assert self.driver.current_url == r'https://www.vkostume.ru/catalog/kostyumy_dlya_zhenchin/mnogorazovye_maski_i_antiseptiki/'
+
+        self.assertEqual(self.driver.current_url, \
+            r'https://www.vkostume.ru/catalog/kostyumy_dlya_zhenchin/mnogorazovye_maski_i_antiseptiki/')
 
     def test_1_3(self):
         """
@@ -49,7 +58,9 @@ class Ppkt(unittest.TestCase):
 
         self.hoverOverAnElementByXpath('/html/body/div[5]/div[1]/div/div[1]/a')
         self.clikByXpath('/html/body/div[5]/div[1]/div/div[1]/div/div/div/div/div/ul/li[2]/a')
-        assert self.driver.current_url == r'https://www.vkostume.ru/catalog/kostyumy_dlya_zhenchin/Kostyumy/'
+
+        self.assertEqual(self.driver.current_url, \
+            r'https://www.vkostume.ru/catalog/kostyumy_dlya_zhenchin/Kostyumy/')
 
     def test_1_4(self):
         """
@@ -59,7 +70,8 @@ class Ppkt(unittest.TestCase):
 
         self.hoverOverAnElementByXpath('/html/body/div[5]/div[1]/div/div[1]/a')
         self.clikByXpath('/html/body/div[5]/div[1]/div/div[1]/div/div/div/div/div/ul/li[7]/a')
-        assert self.driver.current_url == r'https://www.vkostume.ru/catalog/Eroticheskie/'
+
+        self.assertEquals(self.driver.current_url, r'https://www.vkostume.ru/catalog/Eroticheskie/')
 
         
 if __name__ == "__main__":
