@@ -71,7 +71,7 @@ class Ppkt(unittest.TestCase):
         self.hoverOverAnElementByXpath('/html/body/div[5]/div[1]/div/div[1]/a')
         self.clikByXpath('/html/body/div[5]/div[1]/div/div[1]/div/div/div/div/div/ul/li[7]/a')
 
-        self.assertEquals(self.driver.current_url, r'https://www.vkostume.ru/catalog/Eroticheskie/')
+        self.assertEqual(self.driver.current_url, r'https://www.vkostume.ru/catalog/Eroticheskie/')
 
         
 if __name__ == "__main__":
